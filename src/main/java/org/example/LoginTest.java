@@ -15,9 +15,13 @@ import java.time.Duration;
 
 
 public class LoginTest {
-private LoginPage lp;
+
+
+    public LoginTest(WebDriver driver) {
+    }
+
     @Test
-    public static void setup() {
+    public static void test() {
 
         System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
@@ -43,9 +47,9 @@ private LoginPage lp;
 
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } finally {
-            driver.quit();
-        }
+        } //finally {
+           // driver.quit();
+        //}
 
 
     }
