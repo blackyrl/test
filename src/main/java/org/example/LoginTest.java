@@ -21,19 +21,19 @@ public class LoginTest {
     }
 
     @Test
-    public static void test() {
+    public static void main() {
 
         System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        
 
         try {
 
             driver.get("https://account.mail.ru/login");
             Thread.sleep(500);
-            LoginPage lp = new LoginPage(driver);
+            LoginPage lp = new LoginPage();
             String mailAddr = "boomkin2020@mail.ru";
           //  WebElement loginField = driver.findElement(By.xpath("//input[@name='username']"));
          //   System.out.println(loginField);
@@ -41,8 +41,8 @@ public class LoginTest {
          //   loginField.clear();
          //   loginField.sendKeys(mailAddr);
          //   driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-            lp.login(mailAddr, "Ghbdtn12gjrf");
-           // lp.assertMailAddr("boomkin2020@mail.ru");
+            lp.login(mailAddr);
+           // lp.assertMailAddr("boomkin2020@mail.ru"); "Ghbdtn12gjrf"
            // lp.exit();
 
         } catch (InterruptedException e) {

@@ -3,17 +3,14 @@ package org.example;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.FindBy;
 
 import java.time.Duration;
 
-public class LoginPage extends LoginTest{
+public class LoginPage {
 
     protected WebDriver driver;
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
+
+
     private final By loginField = By.xpath("//input[@name='username']");
     private final By passField = By.xpath("//input[@name='password']");
     private final By inputPassBtn = By.xpath("//button[@data-test-id='next-button']");
@@ -22,11 +19,14 @@ public class LoginPage extends LoginTest{
     WebElement mailCount = driver.findElement(By.xpath("//a[@href='/inbox/']"));
     WebElement exitBtn = driver.findElement(By.xpath("//div[text()='Выйти']"));
 
-    public void login(String mailAddr, String mailPass) {
-            driver.findElement(loginField).click();
-            driver.findElement(loginField).clear();
-            System.out.println(mailAddr);
-            driver.findElement(loginField).sendKeys(mailAddr);
+    public void login(String mailAddr) {
+        driver.findElement(loginField).click();
+        driver.findElement(loginField).clear();
+        System.out.println(mailAddr);
+        driver.findElement(loginField).sendKeys(mailAddr);
+    }
+    public void other(String mailAddr, String mailPass) {
+
             driver.findElement(inputPassBtn).click();
             driver.findElement(passField).click();
             driver.findElement(passField).clear();
