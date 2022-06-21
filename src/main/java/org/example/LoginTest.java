@@ -6,28 +6,32 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
 
 public class LoginTest {
-
-
-    public LoginTest(WebDriver driver) {
-    }
-
-    @Test
-    public static void main() {
-
+    public static WebDriver driver;
+    @BeforeMethod
+    public void setup() {
         System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        
+        //main();
+    }
+    @AfterMethod
+    public void afterMetod() {
+        driver.quit();
+    }
+    @Test
+    public static void main() {
 
         try {
 
@@ -35,23 +39,18 @@ public class LoginTest {
             Thread.sleep(500);
             LoginPage lp = new LoginPage();
             String mailAddr = "boomkin2020@mail.ru";
-          //  WebElement loginField = driver.findElement(By.xpath("//input[@name='username']"));
-         //   System.out.println(loginField);
-          //  loginField.click();
-         //   loginField.clear();
-         //   loginField.sendKeys(mailAddr);
-         //   driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
             lp.login(mailAddr);
-           // lp.assertMailAddr("boomkin2020@mail.ru"); "Ghbdtn12gjrf"
-           // lp.exit();
+            lp.other(mailAddr, "Ghbdtn12gjrf");
+            lp.assertMailAddr("boomkin2020@mail.ru");
+            lp.exit();
 
         } catch (InterruptedException e) {
             e.printStackTrace();
         } //finally {
-           // driver.quit();
+          //  driver.quit();
         //}
 
 
     }
-
 }
